@@ -10,6 +10,10 @@ public interface IGameModel
 
     int MaxNumber { get; }
 
+    int CurrentMinNumber { get; }
+
+    int CurrentMaxNumber { get; }
+
     void ResetGame();
 
     void CheckUserNumber(int number);

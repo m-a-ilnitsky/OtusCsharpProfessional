@@ -21,6 +21,10 @@ public class GuessNumberGameModel : IGameModel
 
     public int MaxNumber => _initialNumbersRange.To;
 
+    public int CurrentMinNumber => _currentNumbersRange.From;
+
+    public int CurrentMaxNumber => _currentNumbersRange.To;
+
     public GuessNumberGameModel(
         IGameView view,
         IRange<int> numbersRange,
@@ -57,12 +61,12 @@ public class GuessNumberGameModel : IGameModel
         }
         else if (UserNumber < _hiddenNumber)
         {
-            _currentNumbersRange.From = UserNumber;
+            _currentNumbersRange.From = UserNumber + 1;
             _view.ReportThatNumberIsSmaller();
         }
         else if (UserNumber > _hiddenNumber)
         {
-            _currentNumbersRange.To = UserNumber;
+            _currentNumbersRange.To = UserNumber - 1;
             _view.ReportThatNumberIsGreater();
         }
         else
