@@ -6,8 +6,6 @@ public class IntRange : IRange<int>
 
     public int To { get; set; }
 
-    public IntRange() { }
-
     public IntRange(int from, int to)
     {
         From = from;
