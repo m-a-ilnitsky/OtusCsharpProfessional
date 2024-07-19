@@ -36,7 +36,7 @@ public class GuessNumberGameModel : IGameModel
 
         _currentNumbersRange = (IRange<int>)_initialNumbersRange.Clone();
 
-        _view.SetGameModel(this);
+        _view.SetModel(this);
 
         ResetGame();
     }

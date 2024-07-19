@@ -2,12 +2,8 @@
 
 namespace HomeWork09.Solid.View;
 
-public interface IGameView
+public interface IGameView : IRunable, IModelSettable<IGameModel>
 {
-    void SetGameModel(IGameModel model);
-
-    void Run();
-
     void ReportThatNumberIsOutOfRange();
 
     void ReportThatNumberIsGreater();
