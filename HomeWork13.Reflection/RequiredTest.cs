@@ -72,16 +72,16 @@ public class RequiredTest
         var stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        string csv = CsvSerializer.Serialize(obj);
+        var csvString = CsvSerializer.Serialize(obj);
 
         for (var i = 1; i < repetitionsCount; i++)
         {
-            csv = CsvSerializer.Serialize(obj);
+            csvString = CsvSerializer.Serialize(obj);
         }
 
         stopwatch.Stop();
 
-        return (csv, stopwatch.Elapsed);
+        return (csvString, stopwatch.Elapsed);
     }
 
     public static (T Obj, TimeSpan Time) TestCsvDeserialization<T>(string csv, int repetitionsCount)
@@ -107,16 +107,16 @@ public class RequiredTest
         var stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        string json = JsonSerializer.Serialize(obj, JsonSerializerOptions);
+        var jsonString = JsonSerializer.Serialize(obj, JsonSerializerOptions);
 
         for (var i = 1; i < repetitionsCount; i++)
         {
-            json = JsonSerializer.Serialize(obj, JsonSerializerOptions);
+            jsonString = JsonSerializer.Serialize(obj, JsonSerializerOptions);
         }
 
         stopwatch.Stop();
 
-        return (json, stopwatch.Elapsed);
+        return (jsonString, stopwatch.Elapsed);
     }
 
     public static (T Obj, TimeSpan Time) TestJsonDeserialization<T>(string json, int repetitionsCount)

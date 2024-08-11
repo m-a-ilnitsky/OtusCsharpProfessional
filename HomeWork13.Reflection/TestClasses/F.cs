@@ -4,7 +4,7 @@ public class F
 {
     int i1, i2, i3, i4, i5;
 
-    public static F GetNew() => new F
+    public static F GetNew() => new()
     {
         i1 = 1,
         i2 = 2,

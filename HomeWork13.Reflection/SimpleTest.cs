@@ -31,10 +31,13 @@ public class SimpleTest
             Console.WriteLine("csv:");
             Console.WriteLine(csv);
 
-            object? createdObj = obj is F ? CsvSerializer.Deserialize<F>(csv)
-                            : obj is Point ? CsvSerializer.Deserialize<Point>(csv)
-                            : obj is DoubleRange ? CsvSerializer.Deserialize<DoubleRange>(csv)
-                            : null;
+            object? createdObj = obj switch
+            {
+                F _ => CsvSerializer.Deserialize<F>(csv),
+                Point _ => CsvSerializer.Deserialize<Point>(csv),
+                DoubleRange => CsvSerializer.Deserialize<DoubleRange>(csv),
+                _ => null
+            };
 
             Console.WriteLine("Deserialized object: " + createdObj);
         }

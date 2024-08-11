@@ -6,10 +6,10 @@ namespace HomeWork13.Reflection.Serializer;
 
 public static class CsvSerializer
 {
-    public static char LineSeparator = '\n';
-    public static char ColumnSeparator = ',';
+    public const char LineSeparator = '\n';
+    public const char ColumnSeparator = ',';
 
-    public static string Serialize(this object obj)
+    public static string Serialize<T>(this T obj)
     {
         ArgumentNullException.ThrowIfNull(obj);
 
@@ -20,18 +20,20 @@ public static class CsvSerializer
 
     #region Serialize private methods
 
-    private static Dictionary<string, object?> GetMembersNamesAndValues(object obj)
+    private static Dictionary<string, object?> GetMembersNamesAndValues<T>(T obj)
     {
+        ArgumentNullException.ThrowIfNull(obj);
+
         var namesAndValues = new Dictionary<string, object?>();
 
-        AddFields(namesAndValues, obj);
-        AddProperties(namesAndValues, obj);
+        namesAndValues.AddFields(obj);
+        namesAndValues.AddProperties(obj);
 
         return namesAndValues;
     }
 
     private static void AddFields(
-        IDictionary<string, object?> namesAndValues,
+        this Dictionary<string, object?> namesAndValues,
         object obj)
     {
         var fields = obj
@@ -47,7 +49,7 @@ public static class CsvSerializer
     }
 
     private static void AddProperties(
-        IDictionary<string, object?> namesAndValues,
+        this Dictionary<string, object?> namesAndValues,
         object obj)
     {
         var properties = obj
@@ -80,7 +82,7 @@ public static class CsvSerializer
     {
         if (namesAndValues.Count == 0)
         {
-            return "Нет подходящих свойств";
+            return "";
         }
 
         var sb = new StringBuilder();
@@ -140,14 +142,14 @@ public static class CsvSerializer
             var field = fields.FirstOrDefault(x => x.Name == name);
             if (field != null)
             {
-                SetFieldValue(obj, field, valueString);
+                obj.SetFieldValue(field, valueString);
                 continue;
             }
 
             var property = properties.FirstOrDefault(x => x.Name == name);
             if (property != null)
             {
-                SetPropertyValue(obj, property, valueString);
+                obj.SetPropertyValue(property, valueString);
                 continue;
             }
 
@@ -159,7 +161,7 @@ public static class CsvSerializer
 
     #region Deserialize private methods
 
-    private static IEnumerable<string> GetMembersNames(this string csv)
+    private static string[] GetMembersNames(this string csv)
     {
         var namesLine = csv.GetLines()[0];
         var names = namesLine.GetColumns();
@@ -167,7 +169,7 @@ public static class CsvSerializer
         return names;
     }
 
-    private static IEnumerable<string> GetMembersValuesStrings(this string csv)
+    private static string[] GetMembersValuesStrings(this string csv)
     {
         var valuesLine = csv.GetLines()[1];
         var valuesStrings = valuesLine.GetColumns();
@@ -179,16 +181,16 @@ public static class CsvSerializer
 
     private static string[] GetColumns(this string csvLine) => csvLine.Split(ColumnSeparator);
 
-    private static void SetFieldValue(object obj, FieldInfo field, string valueString)
+    private static void SetFieldValue(this object obj, FieldInfo field, string valueString)
     {
-        Type type = field.FieldType;
+        var type = field.FieldType;
         var value = Parse(type, valueString);
         field.SetValue(obj, value);
     }
 
-    private static void SetPropertyValue(object obj, PropertyInfo property, string valueString)
+    private static void SetPropertyValue(this object obj, PropertyInfo property, string valueString)
     {
-        Type type = property.PropertyType;
+        var type = property.PropertyType;
         var value = Parse(type, valueString);
         property.SetValue(obj, value);
     }
