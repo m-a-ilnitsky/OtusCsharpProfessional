@@ -68,7 +68,7 @@ public static class CsvSerializer
     {
         return type
             .GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-            .Where(f => f.FieldType.IsPrimitive);
+            .Where(f => f.FieldType.IsPrimitive && !f.Name.EndsWith(">k__BackingField"));
     }
 
     private static IEnumerable<PropertyInfo> GetPrimitiveProperties(this Type type)
