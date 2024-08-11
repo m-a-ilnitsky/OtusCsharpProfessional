@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork09.Solid", "HomeWork09.Solid\HomeWork09.Solid.csproj", "{4FB686CF-F052-40A8-80FC-7CD9DD88971B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeWork09.Solid", "HomeWork09.Solid\HomeWork09.Solid.csproj", "{4FB686CF-F052-40A8-80FC-7CD9DD88971B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeWork13.Reflection", "HomeWork13.Reflection\HomeWork13.Reflection.csproj", "{89584987-F21E-41D0-9CA7-16A20020530B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4FB686CF-F052-40A8-80FC-7CD9DD88971B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FB686CF-F052-40A8-80FC-7CD9DD88971B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FB686CF-F052-40A8-80FC-7CD9DD88971B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89584987-F21E-41D0-9CA7-16A20020530B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89584987-F21E-41D0-9CA7-16A20020530B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89584987-F21E-41D0-9CA7-16A20020530B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89584987-F21E-41D0-9CA7-16A20020530B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
