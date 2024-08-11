@@ -6,11 +6,11 @@ public static class CsvSerializer
     public const string ColumnSeparator = ",";
 
     public static string Serialize<T>(
-        this T obj,
+        T obj,
         string columnSeparator = ColumnSeparator,
         string lineSeparator = LineSeparator)
     {
-        return CsvSerializationHelper.Serialize(obj, columnSeparator, lineSeparator);
+        return obj.Serialize(columnSeparator, lineSeparator);
     }
 
     public static T Deserialize<T>(

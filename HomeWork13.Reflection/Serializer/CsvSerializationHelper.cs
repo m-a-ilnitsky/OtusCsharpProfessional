@@ -6,7 +6,7 @@ namespace HomeWork13.Reflection.Serializer;
 internal static class CsvSerializationHelper
 {
     public static string Serialize<T>(
-        T obj,
+        this T obj,
         string columnSeparator,
         string lineSeparator)
     {
