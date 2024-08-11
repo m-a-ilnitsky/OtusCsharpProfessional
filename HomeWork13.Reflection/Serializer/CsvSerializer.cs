@@ -73,7 +73,7 @@ public static class CsvSerializer
     {
         return type
             .GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-            .Where(p => p.PropertyType.IsPrimitive);
+            .Where(p => p.PropertyType.IsPrimitive && p.SetMethod != null);
     }
 
     private static string GetCsvString(IDictionary<string, object?> namesAndValues)

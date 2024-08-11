@@ -7,21 +7,39 @@ namespace HomeWork13.Reflection;
 
 public class RequiredTest
 {
+    private static readonly JsonSerializerOptions JsonSerializerOptions = new()
+    {
+        IncludeFields = true
+    };
+
     public static void Run()
     {
         var repetitionsCount = 100000;
 
         var f = F.GetNew();
+        var range = new DoubleRange(5, 7);
         var point = new Point
         {
             X = 3,
             Y = 4
         };
-        var range = new DoubleRange(5, 7);
+        var vector3D = new Vector3D
+        {
+            X = 3,
+            Y = 4,
+            Z = 5
+        };
+        var vector2D = new Vector2D
+        {
+            X = 3,
+            Y = 4
+        };
 
         Test(f, repetitionsCount);
-        Test(point, repetitionsCount);
         Test(range, repetitionsCount);
+        Test(point, repetitionsCount);
+        Test(vector3D, repetitionsCount);
+        Test(vector2D, repetitionsCount);
     }
 
     public static void Test<T>(T sourceObject, int repetitionsCount)
@@ -89,11 +107,11 @@ public class RequiredTest
         var stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        string json = JsonSerializer.Serialize(obj);
+        string json = JsonSerializer.Serialize(obj, JsonSerializerOptions);
 
         for (var i = 1; i < repetitionsCount; i++)
         {
-            json = JsonSerializer.Serialize(obj);
+            json = JsonSerializer.Serialize(obj, JsonSerializerOptions);
         }
 
         stopwatch.Stop();
@@ -106,11 +124,11 @@ public class RequiredTest
         var stopwatch = new Stopwatch();
         stopwatch.Start();
 
-        var obj = JsonSerializer.Deserialize<T>(json);
+        var obj = JsonSerializer.Deserialize<T>(json, JsonSerializerOptions);
 
         for (var i = 1; i < repetitionsCount; i++)
         {
-            obj = JsonSerializer.Deserialize<T>(json);
+            obj = JsonSerializer.Deserialize<T>(json, JsonSerializerOptions);
         }
 
         stopwatch.Stop();
