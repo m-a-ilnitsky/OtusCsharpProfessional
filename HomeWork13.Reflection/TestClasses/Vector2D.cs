@@ -7,5 +7,5 @@ public class Vector2D
 
     public double GetLength() => Math.Sqrt(X * X + Y * Y);
 
-    public override string ToString() => $"Vector3D({X}, {Y})";
+    public override string ToString() => $"Vector2D({X}, {Y})";
 }
