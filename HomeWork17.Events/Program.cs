@@ -3,8 +3,6 @@ using HomeWork17.Events.Traverser.Args;
 using System;
 using System.IO;
 
-Console.WriteLine("Hello, World!");
-
 var currentDirectoryPath = Environment.CurrentDirectory;
 var parentDirectoryPath = new DirectoryInfo(currentDirectoryPath)
         .Parent
