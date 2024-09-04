@@ -6,6 +6,9 @@ namespace HomeWork23.Tasks;
 
 public static class FileHelper
 {
+    /// <summary>
+    /// Получение количества всех символов в файле
+    /// </summary>
     public static int GetFileSymbolsCount(string filePath)
     {
         using var reader = new StreamReader(filePath);
@@ -20,6 +23,9 @@ public static class FileHelper
         return symbolsCount;
     }
 
+    /// <summary>
+    /// Получение количества заданных символов в файле
+    /// </summary>
     public static int GetFileSymbolsCount(string filePath, char symbol)
     {
         using var reader = new StreamReader(filePath);
@@ -38,6 +44,10 @@ public static class FileHelper
         return symbolsCount;
     }
 
+    /// <summary>
+    /// Параллельное получение количества всех символов во всех файлах директории
+    /// Параллелизм релизован через new Task и Task.WaitAll
+    /// </summary>
     public static int GetDirectoryFilesSymbolsCount(string directoryPath)
     {
         var files = Directory.EnumerateFiles(directoryPath).ToArray();
@@ -63,6 +73,10 @@ public static class FileHelper
         return sumCount;
     }
 
+    /// <summary>
+    /// Параллельное получение количества заданных символов во всех файлах директории
+    /// Параллелизм релизован через new Task и Task.WaitAll
+    /// </summary>
     public static int GetDirectoryFilesSymbolsCount(string directoryPath, char symbol)
     {
         var files = Directory.EnumerateFiles(directoryPath).ToArray();
@@ -88,6 +102,10 @@ public static class FileHelper
         return sumCount;
     }
 
+    /// <summary>
+    /// Параллельное получение количества всех символов во всех файлах директории
+    /// Параллелизм релизован через Task.Run и Task.WhenAll
+    /// </summary>
     public static async Task<int> GetDirectoryFilesSymbolsCountAsync(string directoryPath)
     {
         var files = Directory.EnumerateFiles(directoryPath).ToArray();
@@ -112,6 +130,10 @@ public static class FileHelper
         return sumCount;
     }
 
+    /// <summary>
+    /// Параллельное получение количества заданных символов во всех файлах директории
+    /// Параллелизм релизован через Task.Run и Task.WhenAll
+    /// </summary>
     public static async Task<int> GetDirectoryFilesSymbolsCountAsync(string directoryPath, char symbol)
     {
         var files = Directory.EnumerateFiles(directoryPath).ToArray();
